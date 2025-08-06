@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using ElectricalTest.UsrControl;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,15 @@ namespace ElectricalTest
         public MainWindow()
         {
             InitializeComponent();
+        }
+        private void WMain_Loaded(object sender, RoutedEventArgs e)
+        {
+            RenderPages.Children.Clear();
+            RenderPages.Children.Add(new ElectricalTestControl());
+        }
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

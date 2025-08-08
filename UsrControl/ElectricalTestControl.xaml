@@ -6,139 +6,164 @@
              xmlns:local="clr-namespace:ElectricalTest.UsrControl"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="1280">
+             d:DesignHeight="720" d:DesignWidth="1280">
     <Grid Background="Gainsboro">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.3*" />
-            <ColumnDefinition Width="1.1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
-            <RowDefinition Height="75" />
+            <RowDefinition Height="2" />
+            <RowDefinition Height="80" />
             <RowDefinition Height="75" />
             <RowDefinition Height="10" />
-            <RowDefinition Height="70" />
-            <RowDefinition Height="70" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="80" />
             <RowDefinition Height="75" />
             <RowDefinition Height="*" />
 
         </Grid.RowDefinitions>
 
-        <materialDesign:Card Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Left"
-            materialDesign:ElevationAssist.Elevation="Dp16" UniformCornerRadius="8" BorderThickness="2"
-        Margin="18 5 5 5" BorderBrush="Gray" Width="auto" Height="auto" Background="#F6F6F8">
-
-            <StackPanel Orientation="Vertical">
-                <StackPanel Margin="5 8 0 0" Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="18 5 5 5" Grid.ColumnSpan="5">
+            <!-- **** TM Etiqueta de Corte **** -->
+            <materialDesign:Card  HorizontalAlignment="Left" materialDesign:ElevationAssist.Elevation="Dp8" UniformCornerRadius="4"
+                     Width="auto" Height="auto" Background="#F6F6F8" BorderBrush="Gray" BorderThickness="2" Margin="0 0 10 0">
+                <StackPanel Margin="5 3 0 3" Orientation="Horizontal">
                     <materialDesign:PackIcon Width="32" Height="32" Kind="Numeric" Foreground="Gray" VerticalAlignment="Center" />
-                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="TM etiqueta de corte"
-                        Margin="2 2 5 0" Width="180" FontSize="16" Text="TM9367700" />
+                    <TextBox x:Name="TxtTMCutLabel" Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="TM etiqueta de corte" Margin="2 2 5 0" Width="240" FontSize="20" Text="" />
+                    <Button x:Name="BtnCleanTMCutLabelTextbox" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Purple" Margin="-18 0 -10 0" Height="auto" Click="BtnCleanTMCutLabelTextbox_Click">
+                        <WrapPanel HorizontalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Backspace" Width="40" Height="40" />
+                        </WrapPanel>
+                    </Button>
                 </StackPanel>
+            </materialDesign:Card>
 
-                <StackPanel Margin="5 0 0 0" Orientation="Horizontal">
+            <!-- **** Escanear codigo **** -->
+            <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp8" UniformCornerRadius="4" BorderThickness="2"
+                        BorderBrush="Gray" Width="auto" Height="auto" Background="#F6F6F8" Margin="0 0 10 0">
+                <StackPanel Margin="5 3 0 3" Orientation="Horizontal">
                     <materialDesign:PackIcon Width="32" Height="32" Kind="QrcodeScan" Foreground="Gray" VerticalAlignment="Center" />
-                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Escanear Codigo"
-                        Margin="2 6 0 2" Width="180" FontSize="16" Text="TM9367700" />
+                    <TextBox x:Name="TxtCode" Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Escanear Codigo" 
+                             Margin="2 2 5 0" Width="240" FontSize="20" Text="TM9367700" />
+                    <Button x:Name="BtnCleanCodeTextbox" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Purple" Margin="-18 0 -10 0" Height="auto" Click="BtnCleanCodeTextbox_Click">
+                        <WrapPanel HorizontalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Backspace" Width="40" Height="40" />
+                        </WrapPanel>
+                    </Button>
                 </StackPanel>
-            </StackPanel>
-        </materialDesign:Card>
+            </materialDesign:Card>
 
-        <materialDesign:Card Grid.Row="1" Grid.Column="1" materialDesign:ElevationAssist.Elevation="Dp16" 
-                             UniformCornerRadius="8" BorderThickness="2" Margin="5 5 5 5" BorderBrush="Gray" 
-                             Width="auto" Height="auto" Background="#F6F6F8" HorizontalAlignment="Left">
-            <StackPanel Orientation="Horizontal">
-                <materialDesign:PackIcon Width="32" Height="32" Kind="Counter" Foreground="Gray" VerticalAlignment="Center" />
-                <TextBlock FontWeight="SemiBold" FontSize="38" Text="2808" Margin="2 0 0 0" />
-                <TextBlock FontSize="22" Text=" / 3100" Margin="2 0 2 0" VerticalAlignment="Center"/>
-            </StackPanel>
-        </materialDesign:Card>
+            <!-- **** Contador **** -->
+            <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp8" UniformCornerRadius="4" BorderThickness="2" BorderBrush="Gray" 
+                     Width="auto" Height="auto" Background="#F6F6F8" HorizontalAlignment="Left" Margin="0 0 10 0">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Width="32" Height="32" Kind="Counter" Foreground="Gray" VerticalAlignment="Center" />
+                    <TextBlock FontWeight="SemiBold" FontSize="38" Text="2808" Margin="2 0 0 0" />
+                    <TextBlock FontSize="22" Text=" / 3100" Margin="2 0 2 0" VerticalAlignment="Center"/>
+                </StackPanel>
+            </materialDesign:Card>
 
-        <Button Grid.Row="1" Grid.Column="2" Background="Gray" BorderBrush="Black" Foreground="White" Margin="10 0" Height="40">
-            <WrapPanel HorizontalAlignment="Center">
-                <materialDesign:PackIcon Kind="Pause" Width="25" Height="25" />
-                <TextBlock Text="Pausar Modelo" VerticalAlignment="Center" FontWeight="SemiBold" Margin="10 0" />
-            </WrapPanel>
+            <!-- **** Pausar Modelo Button **** -->
+            <Button x:Name="BtnModelPause" Click="BtnModelPause_Click" Background="Gray" BorderBrush="Black" Foreground="White" Margin="10 0" Height="auto">
+                <WrapPanel HorizontalAlignment="Center">
+                    <materialDesign:PackIcon Kind="Pause" Width="36" Height="36" />
+                    <TextBlock Text="Pausar Modelo" FontSize="26" VerticalAlignment="Center" FontWeight="SemiBold" Margin="10 0" />
+                </WrapPanel>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5">
+            <!-- **** PartNumber Harness + LeadCode + JulianDay **** -->
+            <materialDesign:Card  materialDesign:ElevationAssist.Elevation="Dp8" UniformCornerRadius="8" BorderThickness="2" Margin="18 5 5 5" BorderBrush="Navy" 
+                     Width="auto" Height="auto" Background="Blue">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Width="32" Height="32" Kind="CarShiftPattern" Foreground="Gray" VerticalAlignment="Center" />
+                    <TextBlock FontWeight="SemiBold" FontSize="40" Foreground="White" Text="12191811 L316548 2460893 2460893 2460893 2460893" Margin="2 0 0 0" />
+                </StackPanel>
+            </materialDesign:Card>
+        </StackPanel>
+
+        <!-- **** Video Button **** -->
+        <Button Style="{StaticResource MaterialDesignFloatingActionButton}" Height="75" Width="75" BorderBrush="{x:Null}" Background="Gray" Grid.Column="4" Grid.Row="2" Margin="0 0 25 0" Foreground="White" 
+HorizontalAlignment="Right" VerticalAlignment="Center">
+            <StackPanel Orientation="Vertical">
+                <materialDesign:PackIcon Kind="Play" Width="46" Height="46" Foreground="LimeGreen" HorizontalAlignment="Center"/>
+                <TextBlock FontWeight="SemiBold" FontSize="16" Text="Video" Margin="0 -5 0 0"/>
+            </StackPanel>
         </Button>
 
-        <materialDesign:Card Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" materialDesign:ElevationAssist.Elevation="Dp16" 
-                             UniformCornerRadius="8" BorderThickness="2" Margin="5 5 5 5" BorderBrush="Navy" 
-                             Width="auto" Height="auto" Background="Blue">
-            <StackPanel Orientation="Horizontal">
-                <materialDesign:PackIcon Width="32" Height="32" Kind="CarShiftPattern" Foreground="Gray" VerticalAlignment="Center" />
-                <TextBlock FontWeight="SemiBold" FontSize="35" Foreground="White" Text="12191811 L316548 2460893" Margin="2 0 0 0" />
-            </StackPanel>
-        </materialDesign:Card>
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5">
+            <!-- **** First cable **** -->
+            <Grid>
+                <Canvas>
+                    <Rectangle Width="200" Height="60" Fill="#E85D04" Stroke="#DC2F02" StrokeThickness="2"
+        RadiusX="4" RadiusY="4" Canvas.Left="40" Canvas.Top="10" />
+                    <Line X1="40" X2="238" Y1="40" Y2="40" Stroke="Black" StrokeThickness="18" />
+                    <Rectangle Width="15" Height="30" Fill="#E85D04" Stroke="#DC2F02" StrokeThickness="2"
+        Canvas.Left="27" Canvas.Top="24" />
+                    <Rectangle Width="15" Height="30" Fill="#E85D04" Stroke="#DC2F02" StrokeThickness="2"
+        Canvas.Left="238" Canvas.Top="24" />
+                </Canvas>
+            </Grid>
 
-        <Grid Grid.Row="4" Grid.Column="0">
-            <Canvas>
-                <!-- Primer cable -->
-                <Rectangle Width="200" Height="50" Fill="#E85D04" Stroke="#DC2F02" StrokeThickness="2"
-                RadiusX="2" RadiusY="2" Canvas.Left="40" Canvas.Top="10" />
-                <Line X1="40" X2="238" Y1="35" Y2="35" Stroke="Black" StrokeThickness="16" />
-                <Rectangle Width="15" Height="25" Fill="#E85D04" Stroke="#DC2F02" StrokeThickness="2"
-                Canvas.Left="27" Canvas.Top="22" />
-                <Rectangle Width="15" Height="25" Fill="#E85D04" Stroke="#DC2F02" StrokeThickness="2"
-                Canvas.Left="238" Canvas.Top="22" />
-            </Canvas>
-        </Grid>
-
-        <Grid Grid.Row="5" Grid.Column="0">
-            <Canvas>
-                <!-- Segundo cable -->
-                <Rectangle Width="200" Height="50" Fill="#E85D04" Stroke="#DC2F02" StrokeThickness="2"
-                            RadiusX="2" RadiusY="2" Canvas.Left="40" Canvas.Top="10" />
-                <Line X1="40" X2="238" Y1="35" Y2="35" Stroke="Black" StrokeThickness="16" />
-                <Rectangle Width="15" Height="25" Fill="#E85D04" Stroke="#DC2F02" StrokeThickness="2"
-                            Canvas.Left="27" Canvas.Top="22" />
-                <Rectangle Width="15" Height="25" Fill="#E85D04" Stroke="#DC2F02" StrokeThickness="2"
-                            Canvas.Left="238" Canvas.Top="22" />
-            </Canvas>
-        </Grid>
-
-        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4">
-            
-            <Button Width="60" Height="60" Margin="10 0 0 0" Background="Green" Foreground="White" FontSize="12" FontWeight="Bold"
-                    BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <!-- **** Button PC OK First Cable **** -->
+            <Button Width="69" Height="69" Margin="280 0 0 0" Background="Green" Foreground="White" FontSize="18" FontWeight="Bold"
+              BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="PIEZA OK" TextWrapping="Wrap" TextAlignment="Center"/>
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" CornerRadius="30"
-                                BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                          BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
 
-            <Button Width="60" Height="60" Margin="10 0 10 0" Background="Red" Foreground="White" FontSize="12" FontWeight="Bold"
-        BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <!-- **** Button PC NO OK First Cable **** -->
+            <Button Width="69" Height="69" Margin="10 0 10 0" Background="Red" Foreground="White" FontSize="18" FontWeight="Bold"
+  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="PIEZA NO OK" TextWrapping="Wrap" TextAlignment="Center"/>
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" CornerRadius="30"
-                    BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+              BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
 
-            <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp16" 
-      UniformCornerRadius="8" BorderThickness="2" Margin="5 5 5 5" BorderBrush="Yellow" 
-      Width="auto" Height="auto" Background="LightYellow">
+            <!-- **** Message Alert First Cable **** -->
+            <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp8" UniformCornerRadius="8" BorderThickness="2" Margin="5 5 5 5" BorderBrush="Yellow" 
+Width="auto" Height="auto" Background="LightYellow">
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon Width="32" Height="32" Kind="AlertBoxOutline" Foreground="Black" VerticalAlignment="Center" />
-                    <TextBlock FontWeight="SemiBold" FontSize="15" Text="Mensaje de Falla / Aceptacion / Ultima estacion escaneada" Margin="2 0 0 0" VerticalAlignment="Center" />
+                    <TextBlock FontWeight="SemiBold" FontSize="22" Text="Mensaje de Falla / Aceptacion / Ultima estacion escaneada" Margin="2 0 0 0" VerticalAlignment="Center" />
                 </StackPanel>
             </materialDesign:Card>
-            
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
-            <Button Width="60" Height="60" Margin="10 0 0 0" Background="LightGray" Foreground="White" FontSize="12" FontWeight="Bold"
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="5">
+            <Grid>
+                <Canvas>
+                    <!-- **** Second cable **** -->
+                    <Rectangle Width="200" Height="60" Fill="#E85D04" Stroke="#DC2F02" StrokeThickness="2"
+                    RadiusX="4" RadiusY="4" Canvas.Left="40" Canvas.Top="10" />
+                    <Line X1="40" X2="238" Y1="40" Y2="40" Stroke="Black" StrokeThickness="18" />
+                    <Rectangle Width="15" Height="30" Fill="#E85D04" Stroke="#DC2F02" StrokeThickness="2"
+                    Canvas.Left="27" Canvas.Top="24" />
+                    <Rectangle Width="15" Height="30" Fill="#E85D04" Stroke="#DC2F02" StrokeThickness="2"
+                    Canvas.Left="238" Canvas.Top="24" />
+                </Canvas>
+            </Grid>
+
+            <!-- **** Button PC OK Second Cable **** -->
+            <Button Width="69" Height="69" Margin="280 0 0 0" Background="LightGray" Foreground="White" FontSize="18" FontWeight="Bold"
             BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="PIEZA OK" TextWrapping="Wrap" TextAlignment="Center"/>
                 <Button.Template>
@@ -151,7 +176,8 @@
                 </Button.Template>
             </Button>
 
-            <Button Width="60" Height="60" Margin="10 0 10 0" Background="LightGray" Foreground="White" FontSize="12" FontWeight="Bold"
+            <!-- **** Button PC NO OK Second Cable **** -->
+            <Button Width="69" Height="69" Margin="10 0 10 0" Background="LightGray" Foreground="White" FontSize="18" FontWeight="Bold"
 BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="PIEZA NO OK" TextWrapping="Wrap" TextAlignment="Center"/>
                 <Button.Template>
@@ -164,76 +190,64 @@ BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                 </Button.Template>
             </Button>
 
+            <!-- **** Message Alert Second Cable **** -->
             <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp16" 
              UniformCornerRadius="8" BorderThickness="2" Margin="5 5 5 5" BorderBrush="DarkGreen" 
              Width="auto" Height="auto" Background="LightGreen">
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon Width="32" Height="32" Kind="Check" Foreground="Green" VerticalAlignment="Center" />
-                    <TextBlock FontWeight="SemiBold" FontSize="15" Text="Mensaje de Falla / Aceptacion / Ultima estacion escaneada" VerticalAlignment="Center" Margin="2 0 0 0" />
+                    <TextBlock FontWeight="SemiBold" FontSize="21" Text="Mensaje de Falla / Aceptacion / Ultima estacion escaneada" VerticalAlignment="Center" Margin="2 0 0 0" />
                 </StackPanel>
             </materialDesign:Card>
         </StackPanel>
 
-
         <StackPanel Orientation="Horizontal" Margin="18 5 5 5" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="5">
             <materialDesign:Card BorderBrush="Gray" UniformCornerRadius="8" 
-                     materialDesign:ElevationAssist.Elevation="Dp6">
+                     materialDesign:ElevationAssist.Elevation="Dp8">
                 <StackPanel Orientation="Horizontal">   
-                    <TextBlock FontWeight="ExtraBold" FontSize="14" Margin="5 0 0 0" Text="&#xF06C;" FontFamily="wingdings" VerticalAlignment="Center" Foreground="#42A5F4" />
-                    <TextBlock Margin="20" HorizontalAlignment="Left"  FontWeight="SemiBold" Text="TM8556054" FontSize="20"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 0">
-                        <TextBlock FontWeight="ExtraBold" FontSize="14" Text="&#xF06C;" FontFamily="wingdings" VerticalAlignment="Center" Foreground="#42A5F4" />
+                    <TextBlock FontWeight="ExtraBold" FontSize="14" Margin="5 0 0 0" Text="n" FontFamily="wingdings" VerticalAlignment="Center" Foreground="Gray" />
+                    <TextBlock Margin="5 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"  FontWeight="SemiBold" Text="TM8556054" FontSize="20"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 0 0 0">
+                        <TextBlock FontWeight="ExtraBold" FontSize="14" Text="n" FontFamily="wingdings" VerticalAlignment="Center" Foreground="Gray" />
                         <TextBlock Text="HMBK214-130015/31 (INSULADOR) 50/50" TextWrapping="Wrap" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16" Margin="5 0 10 0" />
                     </StackPanel>
                 </StackPanel>
             </materialDesign:Card>
 
             <StackPanel Orientation="Horizontal">
-                <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp6" 
-UniformCornerRadius="8" BorderThickness="2" Margin="5 5 5 5" BorderBrush="Yellow" 
-Width="auto" Height="auto" Background="LightYellow">
+                <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp8" UniformCornerRadius="8" BorderThickness="2" Margin="5 5 5 5" 
+                                     BorderBrush="Yellow" Width="auto" Height="auto" Background="LightYellow">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Width="32" Height="32" Kind="AlertBoxOutline" Foreground="Black" VerticalAlignment="Center" />
-                        <TextBlock FontWeight="SemiBold" FontSize="18" Text="TM8888888" Margin="2 0 0 0" VerticalAlignment="Center" />
+                        <TextBlock FontWeight="SemiBold" FontSize="22" Text="TM8888888" Margin="2 0 0 0" VerticalAlignment="Center" />
                     </StackPanel>
                 </materialDesign:Card>
 
-                <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp6" 
+                <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp8" 
 UniformCornerRadius="8" BorderThickness="2" Margin="5 5 5 5" BorderBrush="Yellow" 
 Width="auto" Height="auto" Background="LightYellow">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Width="32" Height="32" Kind="AlertBoxOutline" Foreground="Black" VerticalAlignment="Center" />
-                        <TextBlock FontWeight="SemiBold" FontSize="18" Text="N/P Componente" Margin="2 0 0 0" VerticalAlignment="Center" />
+                        <TextBlock FontWeight="SemiBold" FontSize="21" Text="N/P Componente" Margin="2 0 0 0" VerticalAlignment="Center" />
                     </StackPanel>
                 </materialDesign:Card>
 
-                <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp6" 
-UniformCornerRadius="8" BorderThickness="2" Margin="5 5 5 5" BorderBrush="Yellow" 
-Width="auto" Height="auto" Background="LightYellow">
+                <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp6" UniformCornerRadius="8" BorderThickness="2" Margin="5 5 5 5" BorderBrush="Yellow" 
+                                    Width="auto" Height="auto" Background="LightYellow">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Width="32" Height="32" Kind="AlertBoxOutline" Foreground="Black" VerticalAlignment="Center" />
-                        <TextBlock FontWeight="SemiBold" FontSize="18" Text="20,235" Margin="2 0 0 0" VerticalAlignment="Center" />
+                        <TextBlock FontWeight="SemiBold" FontSize="22" Text="20,235" Margin="2 0 0 0" VerticalAlignment="Center" />
                     </StackPanel>
                 </materialDesign:Card>
             </StackPanel>
         </StackPanel>
 
-        <materialDesign:Card BorderBrush="Gray" UniformCornerRadius="8"  Grid.Row="7" Grid.Column="0" Margin="18 5 0 10"
-         materialDesign:ElevationAssist.Elevation="Dp6">
-            <DataGrid ItemsSource="{Binding TestData}" 
-      AutoGenerateColumns="False"
-      CanUserAddRows="False"
-      RowHeaderWidth="0"
-      
-      IsReadOnly="True"
-      ColumnWidth="*"
-      SelectionMode="Single"
-      SelectionUnit="FullRow"
-      materialDesign:DataGridAssist.CellPadding="12"
-              materialDesign:ElevationAssist.Elevation="Dp16" 
-materialDesign:DataGridAssist.SelectedCellBorderBrush="WhiteSmoke"
-      Style="{StaticResource MaterialDesignDataGrid}">
-
+        <materialDesign:Card BorderBrush="Gray" UniformCornerRadius="8"  Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="18 5 0 10"
+         materialDesign:ElevationAssist.Elevation="Dp8">
+            <DataGrid ItemsSource="{Binding TestData}" AutoGenerateColumns="False" CanUserAddRows="False" RowHeaderWidth="0"      
+                    IsReadOnly="True" ColumnWidth="*" SelectionMode="Single" SelectionUnit="FullRow" materialDesign:DataGridAssist.CellPadding="12"
+                    materialDesign:ElevationAssist.Elevation="Dp8" FontSize="22" materialDesign:DataGridAssist.SelectedCellBorderBrush="WhiteSmoke"
+                    Style="{StaticResource MaterialDesignDataGrid}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Componente" Binding="{Binding Componente}" />
                     <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" />
@@ -241,10 +255,10 @@ materialDesign:DataGridAssist.SelectedCellBorderBrush="WhiteSmoke"
             </DataGrid>
         </materialDesign:Card>
 
+        <Image Grid.Row="7" Grid.Column="4" Margin="0 0 10 0" Source="/Resources/LogoWithName.png" VerticalAlignment="Bottom" HorizontalAlignment="Right" />
+
         
-
-
-
-
+        
+        
     </Grid>
 </UserControl>

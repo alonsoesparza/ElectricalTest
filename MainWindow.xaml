@@ -5,22 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ElectricalTest"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d"
-        WindowStyle="None" ResizeMode="NoResize" Background="{x:Null}" AllowsTransparency="True" Loaded="WMain_Loaded">
+        mc:Ignorable="d" WindowState="Maximized"
+        WindowStyle="None" ResizeMode="NoResize" Height="720" Width="1280" Background="{x:Null}" AllowsTransparency="True" Loaded="WMain_Loaded">
     <Grid>
-        <materialDesign:Card Margin="10" UniformCornerRadius="15">
+        <materialDesign:Card Margin="0" UniformCornerRadius="10">
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="20*" />
-                </Grid.ColumnDefinitions>
-                <Grid.Resources>
-                    <Style TargetType="materialDesign:PackIcon">
-                        <Setter Property="Width" Value="30"></Setter>
-                        <Setter Property="Height" Value="30"></Setter>
-                    </Style>
-                </Grid.Resources>
-                <Grid Grid.Column="0" Background="#F6F5F8" Name="RenderPages"></Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2.5*" />
+                        <ColumnDefinition Width="0.5*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 0 0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock FontWeight="ExtraBold" FontSize="14" Text="&#xF06C;" FontFamily="wingdings" VerticalAlignment="Center" Foreground="Green" />
+                            <TextBlock x:Name="txtBTitle" Text="ESTACION #5 - DESFORRE" TextWrapping="Wrap" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="30" Margin="5 0 10 0" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="1" Margin="0 0 10 0">
+                        <Button Style="{StaticResource MaterialDesignFloatingActionButton}" x:Name="OpenOptions" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Click="OpenOptions_Click" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <StackPanel >
+                                <materialDesign:PackIcon Margin="0 0 6 0" Width="56" Height="56" Kind="ViewHeadline" />
+                            </StackPanel>
+                        </Button>
+                    </Grid>                    
+                </Grid>                
+                <Grid Grid.Row="1" Background="#F6F5F8" Name="RenderPages"></Grid>
             </Grid>
         </materialDesign:Card>
+
+        <!-- Overlay oscuro -->
+        <Grid x:Name="OverlayOscuro"
+Background="#80000000"  
+  Visibility="Collapsed"
+Panel.ZIndex="99" />
+
+
     </Grid>
 </Window>
